@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Julian-D-Leal/Proyecto-Becas/tree/master/static/css/main.073c9b0a.css",
+    "main.js": "/Julian-D-Leal/Proyecto-Becas/tree/master/static/js/main.097faf6b.js",
+    "static/js/787.4444a6dd.chunk.js": "/Julian-D-Leal/Proyecto-Becas/tree/master/static/js/787.4444a6dd.chunk.js",
+    "index.html": "/Julian-D-Leal/Proyecto-Becas/tree/master/index.html",
+    "main.073c9b0a.css.map": "/Julian-D-Leal/Proyecto-Becas/tree/master/static/css/main.073c9b0a.css.map",
+    "main.097faf6b.js.map": "/Julian-D-Leal/Proyecto-Becas/tree/master/static/js/main.097faf6b.js.map",
+    "787.4444a6dd.chunk.js.map": "/Julian-D-Leal/Proyecto-Becas/tree/master/static/js/787.4444a6dd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.097faf6b.js"
+  ]
+}
