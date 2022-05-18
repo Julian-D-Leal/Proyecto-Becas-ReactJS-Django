@@ -1,9 +1,12 @@
 import './App.css';
+import Index from './components/login';
+
 
 function App() {
   return (
     <div className="App">
-      Proyecto WWW BECAS
+      <Index />
+
     </div>
   );
 }
