@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import GuestSignupView, RootSignupView,UserViewSet,LogoutView,RootOnlyView,GuestOnlyView,CustomAuthToken
+from .views import GuestSignupView, RootSignupView,UserViewSet,LogoutView,RootOnlyView,GuestOnlyView,CustomAuthToken,BecaViewSet
 from django.conf.urls import include
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
+router.register('list', BecaViewSet)
 
 urlpatterns = [
     path('signup/guest', GuestSignupView.as_view()),

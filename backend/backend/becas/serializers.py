@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, guest, root
+from .models import User, guest, root, Beca
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -52,3 +52,7 @@ class RootSignupSerializer(serializers.ModelSerializer):
         root.objects.create(user=user)
         return user
 
+class BecaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Beca
+        fields=["id", "nombre","categoria","porcentaje","pais","universidad","requerimientos","vistas"]
