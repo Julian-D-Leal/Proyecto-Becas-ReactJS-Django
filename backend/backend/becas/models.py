@@ -26,13 +26,18 @@ class Beca (models.Model):
 
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
-    is_guest = models.BooleanField(default=True)
+    is_guest = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
 
 class root(models.Model):
-    user=models.OneToOneField(User,related_name="admin",on_delete=models.CASCADE)
+    user=models.OneToOneField(User,related_name="user",on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.username
+
+class guest(models.Model):
+    user=models.OneToOneField(User,related_name="guest",on_delete=models.CASCADE)
     def __str__(self):
         return self.user.username
 
@@ -40,15 +45,4 @@ class root(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-
-
-
-class guest(models.Model):
-    user=models.OneToOneField(User,related_name="guest",on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username
-
-   
-    
 
