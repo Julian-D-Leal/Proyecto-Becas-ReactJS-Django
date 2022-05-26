@@ -20,7 +20,7 @@ class Beca (models.Model):
     pais=models.CharField(max_length=20)
     universidad=models.CharField(max_length=30)
     requerimientos= models.TextField()
-    vistas=models.IntegerField()
+    vistas=models.IntegerField(default=0)
     def __str__(self):
         return self.nombre
 
