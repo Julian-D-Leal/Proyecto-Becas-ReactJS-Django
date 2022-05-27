@@ -142,3 +142,8 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL="becas.User"
 ACCOUNT_UNIQUE_EMAIL = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
