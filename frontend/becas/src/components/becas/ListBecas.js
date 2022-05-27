@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+import './card.css'
 
 class ListBecas extends Component{
     constructor(props){
@@ -28,18 +29,7 @@ class ListBecas extends Component{
         return this.setState({viewInternationals:1});
     }
 
-    renderTabList = () => {
-        return(
-            <div>
-                <span onClick={() => this.displayInternationals(true)}>
-                    BECAS INTERNACIONALES
-                </span>
-                <span onClick={() => this.displayInternationals(false)}>
-                    BECAS NACIONALES
-                </span>
-            </div>
-        )
-    }
+
 
     render = () => {
         const {viewInternationals} = this.state
@@ -48,66 +38,33 @@ class ListBecas extends Component{
         )
         return (
             <div>
-                <span onClick={() => this.displayInternationals(false)}
-                className="btn btn-primary ">
+                <button onClick={() => this.displayInternationals(false)}
+                className="btn btn-primary">
                     BECAS NACIONALES
-                </span>
-                <span onClick={() => this.displayInternationals(true)}
-                className="btn btn-primary ">
+                </button>
+                <button onClick={() => this.displayInternationals(true)}
+                className="btn btn-primary">
                     BECAS INTERNACIONALES
-                </span>
+                </button>
 
                 {items.map((item)=>(
-                    <li key={item.id}>
-                    <span>
-                        {item.nombre}
-                    </span>
-                    
-                        {(()=>{
-                            if (item.categoria === 1){
-                                return (
-                                <span> NACIONAL </span>
-                                )
-                            }else{ 
-                                return(
-                                    <span> INTERNACIONAL </span>
-                                )
-                            }
-                        })()}
-                    <span>
-                        {item.universidad}
-                    </span>
-                    <span>
-                        {item.pais}
-                    </span>
-                </li>
+                    <div key={item.id}>
+                        <div class="courses-container">
+	                        <div class="course">
+	                        	<div class="course-preview">
+                                    <h6>Beca</h6>
+                                    <h2>{item.nombre}</h2>
+                                </div>
+                                <div class="course-info">
+                                    <h6>{item.pais}</h6>
+                                    <h2>{item.universidad}</h2>
+                                    <button class="botonmio">Detallar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 ))}
-            </div>
-          /*  items.map((item) =>(
-            <li key={item.id}>
-                <span>
-                    {item.nombre}
-                </span>
-                
-                    {(()=>{
-                        if (item.categoria === 1){
-                            return (
-                            <span> NACIONAL </span>
-                            )
-                        }else{ 
-                            return(
-                                <span> INTERNACIONAL </span>
-                            )
-                        }
-                    })()}
-                <span>
-                    {item.universidad}
-                </span>
-                <span>
-                    {item.pais}
-                </span>
-            </li>
-        ))*/)
+            </div>)
     }
 }
 
