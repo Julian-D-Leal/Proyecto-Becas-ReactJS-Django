@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../actions/auth"  
+import ListBecas from '../components/becas/ListBecas'
 
 
 function Index() {   
@@ -38,6 +39,7 @@ function Index() {
           </div>
         </nav>
       </div>
+      <ListBecas/>
     </Fragment>
   )
 }

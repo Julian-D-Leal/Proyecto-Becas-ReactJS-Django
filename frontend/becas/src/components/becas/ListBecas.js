@@ -49,13 +49,13 @@ class ListBecas extends Component{
 
                 {items.map((item)=>(
                     <div key={item.id}>
-                        <div class="courses-container">
-	                        <div class="course">
-	                        	<div class="course-preview">
+                        <div className="courses-container">
+	                        <div className="course">
+	                        	<div className="course-preview">
                                     <h6>Beca</h6>
                                     <h2>{item.nombre}</h2>
                                 </div>
-                                <div class="course-info">
+                                <div className="course-info">
                                     <h6>{item.pais}</h6>
                                     <h2>{item.universidad}</h2>
                                     <button class="botonmio">Detallar</button>
