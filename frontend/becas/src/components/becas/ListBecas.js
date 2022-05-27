@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import Modal from '../modalDetalle/Detalles'
 import axios from 'axios'
 import './card.css'
 
@@ -6,6 +7,14 @@ class ListBecas extends Component{
     constructor(props){
         super(props)
         this.state = {
+            activeItem:{
+                Nombre: "",
+                Categoria: "",
+                Porcentaje: 0,
+                Pais: "",
+                Universidad: "",
+                Requerimientos: ""
+            },
             becas:[],
             viewInternationals: 1
         }
@@ -14,12 +23,20 @@ class ListBecas extends Component{
     componentDidMount(){
         this.refreshList()
     }
+    
+    detallarItem= (item) => {
+        this.setState ({activeItem:item,modal:!this.state.modal})
+    }
 
     refreshList = () => {
         axios
         .get("http://localhost:8000/becas/list/")
         .then(res => this.setState({becas:res.data}))
         .catch(err => console.log(err))
+    }
+
+    toggle = () =>{
+        this.setState({modal: !this.state.modal});
     }
 
     displayInternationals = status => {
@@ -46,7 +63,7 @@ class ListBecas extends Component{
                 className="btn btn-primary">
                     BECAS INTERNACIONALES
                 </button>
-
+                
                 {items.map((item)=>(
                     <div key={item.id}>
                         <div className="courses-container">
@@ -58,14 +75,20 @@ class ListBecas extends Component{
                                 <div className="course-info">
                                     <h6>{item.pais}</h6>
                                     <h2>{item.universidad}</h2>
-                                    <button class="botonmio">Detallar</button>
+                                    <button className="botonmio" onClick={() => this.detallarItem(item)}>Detalles</button>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 ))}
+                {this.state.modal ? (
+                    <Modal
+                    activeItem = {this.state.activeItem}
+                    toggle= {this.toggle}
+                    />
+                ) : null }
             </div>)
-    }
+    } 
 }
 
 export default ListBecas
