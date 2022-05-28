@@ -1,6 +1,5 @@
 import {Route, Redirect} from "react-router-dom"
 import { useSelector } from "react-redux"
-import { Component } from "react"
 
 
 export const GPrivateRoute=({component:Component, path, ...rest})=>{
