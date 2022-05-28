@@ -3,6 +3,7 @@ import Modal from '../modalDetalle/Detalles'
 import axios from 'axios'
 import './card.css'
 import Populares from '../carrusel/Populares'
+import Noticias from '../nyt/Noticias'
 
 class ListBecas extends Component{
     constructor(props){
@@ -68,8 +69,9 @@ class ListBecas extends Component{
         )
         return (
             <div>
-                <div>
-                <Populares />
+                <div> <h2>NOTICIAS NEW YORK TIMES</h2>
+                <Noticias/>
+                <Populares/>
                 </div>
                 <button onClick={() => this.displayInternationals(false)}
                 className="btn btn-primary">
