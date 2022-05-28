@@ -37,7 +37,7 @@ class AddModal extends Component {
                             name="nombre"
                             value={this.state.activeItem.nombre}
                             onChange={this.handleChange}
-                            placeholder="Enter Task Title"
+                            placeholder="Ingrese el nombre de la beca"
                             />
                         </FormGroup>
                         <FormGroup>
@@ -66,6 +66,7 @@ class AddModal extends Component {
                             name="pais"
                             value={this.state.activeItem.pais}
                             onChange={this.handleChange}
+                            placeholder="Ingrese el país de la beca"
                             />
                         </FormGroup>
                         <FormGroup>
@@ -75,6 +76,7 @@ class AddModal extends Component {
                             name="universidad"
                             value={this.state.activeItem.universidad}
                             onChange={this.handleChange}
+                            placeholder="Ingrese la universidad de la beca"
                             />
                         </FormGroup>
                         <FormGroup>
@@ -84,6 +86,7 @@ class AddModal extends Component {
                             name="requerimientos"
                             value={this.state.activeItem.requerimientos}
                             onChange={this.handleChange}
+                            placeholder="Ingrese los requerimientos de la beca"
                             />                          
                         </FormGroup>
                         <FormGroup>
