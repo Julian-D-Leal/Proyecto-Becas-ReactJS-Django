@@ -27,7 +27,7 @@ class AddModal extends Component {
       const {toggle, onSave} = this.props;
       return(
             <Modal isOpen={true} toggle={toggle}>
-                <ModalHeader toggle={toggle}> Agregar Beca</ModalHeader>
+                <ModalHeader toggle={toggle}>Becas Universitarias</ModalHeader>
                 <ModalBody>
                     <Form>
                         <FormGroup>
