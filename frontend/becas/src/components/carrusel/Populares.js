@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-
+import Modal from '../modalDetalle/Detalles'
 import './cardslide.css'
 
 class Populares extends Component{
@@ -11,8 +11,16 @@ class Populares extends Component{
         }
     }
 
+    detallarItem= (item) => {
+        this.setState ({activeItem:item,modal:!this.state.modal})
+    }
+
     componentDidMount(){
         this.refreshList()
+    }
+
+    toggle = () =>{
+        this.setState({modal: !this.state.modal});
     }
 
     refreshList = () => {
@@ -64,7 +72,7 @@ class Populares extends Component{
                                         <div class="descripcion">
                                             <h2>{item.pais}</h2>
                                         </div>
-                                        <button class="detalle--btn">Detalles</button>
+                                        <button class="detalle--btn" onClick={() => this.detallarItem(item)}>Detalles</button>
                                     </div>
                                 </section>
                                 </div>
@@ -72,6 +80,12 @@ class Populares extends Component{
                         ))}
                     </div>
                 </div>
+                {this.state.modal ? (
+                    <Modal
+                    activeItem = {this.state.activeItem}
+                    toggle= {this.toggle}
+                    />
+                ) : null }
             </div>
         )
     }
