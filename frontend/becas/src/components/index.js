@@ -7,28 +7,28 @@ import ListBecas from '../components/becas/ListBecas'
 
 function Index() {   
   const state=useSelector(state => state.auth)
-      const dispatch=useDispatch()
-      const authLink=(
-        <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+  const dispatch=useDispatch()
+  const authLink=(
+    <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                <li className='nav-item mr-2'>
-                    <button onClick={()=>dispatch(logout())} className='nav-link btn btn-danger'>Logout</button>
+                    <button onClick={()=>dispatch(logout())} className='nav-link btn btn-danger'>Cerrar Sesion</button>
                </li>
                <span className="navbar-text ml-4">
-                    <strong>{state.user ? `welcome ${state.user.username}` : ''}</strong>
+                    <strong>{state.user ? `Bienvenido ${state.user.username}` : ''}</strong>
                </span>
            </ul>
-      )
-      const publicLink = (
-        <div className="dropdown">
-                  <a className="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      INGRESAR
-                    </a>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <li><Link  to="/guest/login/" className="dropdown-item">Iniciar Sesion</Link></li>
-                      <li><Link to="/guest/register/" className="dropdown-item">Registrarse</Link></li>
-                    </ul>
-                  </div>
-      )  
+  )
+  const publicLink = (
+    <div className="dropdown">
+              <a className="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  INGRESAR
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><Link  to="/guest/login/" className="dropdown-item">Iniciar Sesion</Link></li>
+                  <li><Link to="/guest/register/" className="dropdown-item">Registrarse</Link></li>
+                </ul>
+              </div>
+  )  
   return(
     <Fragment>
       <div>

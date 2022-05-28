@@ -58,7 +58,7 @@ class ListBecas extends Component{
                                 <div className="course-info">
                                     <h6>{item.pais}</h6>
                                     <h2>{item.universidad}</h2>
-                                    <button class="botonmio">Detallar</button>
+                                    <button className="botonmio">Detallar</button>
                                 </div>
                             </div>
                         </div>
@@ -68,4 +68,4 @@ class ListBecas extends Component{
     }
 }
 
-export default ListBecas
+export default ListBecas;
