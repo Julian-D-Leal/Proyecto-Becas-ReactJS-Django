@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React ,{Component} from 'react';
 import AddModal from './modalAdd'
-
+import {Link} from 'react-router-dom';
 
 class RootDashboard extends Component {
     constructor(props){
@@ -57,7 +57,7 @@ class RootDashboard extends Component {
                                 <div className="course-info">
                                     <h6>{item.pais}</h6>
                                     <h2>{item.universidad}</h2>
-                                    <button className="botoneditar ">Editar</button>
+                                    <button onClick={() => this.editItem(item)} className="botoneditar ">Editar</button>
                                     <button onClick={() => this.handleDelete(item)}className="botonmio btn-primary w3-red">Eliminar</button>
                                 </div>
                             </div>
@@ -81,11 +81,12 @@ class RootDashboard extends Component {
         axios
         .put(`http://localhost:8000/becas/list/${item.id}/`, item)
         .then((res) => this.refreshList());
-        return;
+        return alert("Accion realizada con exito");
     }
-    axios
+    axios 
         .post("http://localhost:8000/becas/list/", item)
         .then((res) => this.refreshList());
+    alert("Accion realizada con exito");
     };
     handleDelete = (item) => {
         axios
@@ -93,10 +94,16 @@ class RootDashboard extends Component {
           .then((res) => this.refreshList());
         alert("eliminado con exito")
       };
+    editItem = (item) => {
+        this.setState({ activeItem: item, modal: !this.state.modal });
+    };
     render() {
         return(
             <div>   
                 <h2>Lista de becas</h2>
+                <Link className="botonregresar btn-primary" to="/">
+                    Regresar
+                </Link>
                 <button className="botonañadir w3-green" onClick={this.createBeca}>
                     Añadir Beca
                 </button>
