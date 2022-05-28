@@ -1,17 +1,20 @@
 import axios from 'axios';
 import React ,{Component} from 'react';
+import AddModal from './modalAdd'
+
 
 class RootDashboard extends Component {
     constructor(props){
         super(props)
         this.state = {
             active:{
-                Nombre: "",
-                Categoria: "",
-                Porcentaje: 0,
-                Pais: "",
-                Universidad: "",
-                Requerimientos: ""
+                nombre: "",
+                categoria: "",
+                porcentaje: 0,
+                pais: "",
+                universidad: "",
+                requerimientos: "",
+                vistas:0
             },
             becas:[]
         }
@@ -28,6 +31,17 @@ class RootDashboard extends Component {
         .catch(err => console.log(err))
     }
 
+    createBeca = () => {
+        const item = { nombre: "",
+        categoria: "",
+        porcentaje: 0,
+        pais: "",
+        universidad: "",
+        requerimientos: "",
+        vistas:0};
+        this.setState({ activeItem: item, modal: !this.state.modal });
+      };
+
     renderBecas = () => {
         const items = this.state.becas
         return (
@@ -43,11 +57,8 @@ class RootDashboard extends Component {
                                 <div className="course-info">
                                     <h6>{item.pais}</h6>
                                     <h2>{item.universidad}</h2>
-                                    <di>
-                                        
-                                    </di>
-                                    <button class="botoneditar ">Editar</button>
-                                    <button class="botonmio btn-primary w3-red">Eliminar</button>
+                                    <button className="botoneditar ">Editar</button>
+                                    <button onClick={() => this.handleDelete(item)}className="botonmio btn-primary w3-red">Eliminar</button>
                                 </div>
                             </div>
                         </div>
@@ -57,16 +68,48 @@ class RootDashboard extends Component {
         )
     }
 
+    toggle = () => {
+        this.setState({ modal: !this.state.modal});
+    };
+    handleSubmit = (item) => {
+        this.toggle();
+        alert("save" + JSON.stringify(item));
+      };
+    handleSubmit = (item) => {
+    this.toggle();
+    if (item.id) {      
+        axios
+        .put(`http://localhost:8000/becas/list/${item.id}/`, item)
+        .then((res) => this.refreshList());
+        return;
+    }
+    axios
+        .post("http://localhost:8000/becas/list/", item)
+        .then((res) => this.refreshList());
+    };
+    handleDelete = (item) => {
+        axios
+          .delete(`http://localhost:8000/becas/list/${item.id}/`)
+          .then((res) => this.refreshList());
+        alert("eliminado con exito")
+      };
     render() {
         return(
             <div>   
                 <h2>Lista de becas</h2>
-                <button className="botonañadir w3-green">
+                <button className="botonañadir w3-green" onClick={this.createBeca}>
                     Añadir Beca
                 </button>
                 <div>
                     {this.renderBecas()}
                 </div>
+                {this.state.modal ? (
+                <AddModal
+                    activeItem={this.state.activeItem}
+                    toggle={this.toggle}
+                    onSave={this.handleSubmit}
+                />
+                ) : null}
             </div>
         )
     }
