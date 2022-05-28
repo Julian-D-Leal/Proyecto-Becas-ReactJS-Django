@@ -2,21 +2,24 @@ import React,{Component} from 'react'
 import Modal from '../modalDetalle/Detalles'
 import axios from 'axios'
 import './card.css'
+import Populares from '../carrusel/Populares'
 
 class ListBecas extends Component{
     constructor(props){
         super(props)
         this.state = {
             activeItem:{
-                Nombre: "",
-                Categoria: "",
-                Porcentaje: 0,
-                Pais: "",
-                Universidad: "",
-                Requerimientos: ""
+                nombre: "",
+                categoria: "",
+                porcentaje: 0,
+                pais: "",
+                universidad: "",
+                requerimientos: "",
+                vistas:0
             },
             becas:[],
-            viewInternationals: 1
+            viewInternationals: 1,
+            pop:[]
         }
     }
 
@@ -24,8 +27,18 @@ class ListBecas extends Component{
         this.refreshList()
     }
     
-    detallarItem= (item) => {
+    detallarItem= (item) => {     
+        this.popularidad(item)
         this.setState ({activeItem:item,modal:!this.state.modal})
+    }
+
+    popularidad = (item) => {
+        let activo = item
+        activo.vistas += 1
+        this.setState({activeItem:activo})
+        let code = activo.id
+        axios
+        .put("http://localhost:8000/becas/list/"+code+"/", activo)
     }
 
     refreshList = () => {
@@ -55,6 +68,9 @@ class ListBecas extends Component{
         )
         return (
             <div>
+                <div>
+                <Populares />
+                </div>
                 <button onClick={() => this.displayInternationals(false)}
                 className="btn btn-primary">
                     BECAS NACIONALES
@@ -91,4 +107,4 @@ class ListBecas extends Component{
     } 
 }
 
-export default ListBecas
+export default ListBecas;
