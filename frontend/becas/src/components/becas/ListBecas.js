@@ -29,6 +29,16 @@ class ListBecas extends Component{
     
     detallarItem= (item) => {
         this.setState ({activeItem:item,modal:!this.state.modal})
+        this.popularidad(item)
+    }
+
+    popularidad = (item) => {
+        let activo = item
+        activo.vistas += 1
+        this.setState({activeItem:activo})
+        let code = activo.id
+        axios
+        .put("http://localhost:8000/becas/list/"+code+"/", activo)
     }
 
     refreshList = () => {

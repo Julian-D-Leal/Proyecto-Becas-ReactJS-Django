@@ -30,22 +30,31 @@ class Populares extends Component{
         .catch(err => console.log(err))
     }
 
-    listarPop = () => {
-        function ordenarAsc(p_array_json, p_key) {
-            p_array_json.sort(function (a, b) {
-               return a[p_key] > b[p_key];
-            });
-         }
-
-        function ordenarDesc(p_array_json, p_key) {
-            ordenarAsc(p_array_json, p_key); p_array_json.reverse(); 
-        }
-        ordenarDesc(this.state.becas,'vistas')
-    }
+    /*
+    listarPop = (data, key, orden) => {
+        return data.sort(function (a, b) {
+            var x = a[key],
+            y = b[key];
+    
+            if (orden === 'asc') {
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            }
+    
+            if (orden === 'desc') {
+                return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+            }
+        });
+    }*/
 
     render = () => {
-        this.listarPop()
-        const items = this.state.becas
+        const bec = this.state.becas;
+        var orden = bec.sort(function (a, b) {
+            var x = a['vistas'],
+            y = b['vistas'];
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        });
+        //var orden = listarPop(this.state.becas,'vistas','des')
+        const items = orden
         return (
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" background="#01e37f">
                 <div class="carousel-indicators">
