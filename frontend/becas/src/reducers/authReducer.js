@@ -10,7 +10,7 @@ import {
     REGISTER_RUSER_FAILED } from "../actions/types"
 
 const initialState = {
-    token: localStorage.getItem('token'),
+    token: '',
     isAuthenticated: false,
     isGuest: null,
     isLoading: false,
@@ -35,15 +35,15 @@ export const authReducer = (state = initialState, action) => {
                 isAuthenticated: true,
                 isLoading: false,
                 isGuest: false,
-                user: action.payload
+                user: action.payload.user
             }
-            case GUEST_USER_LOADED:
-                return{
-                    ...state,
-                    isAuthenticated: true,
-                    isGuest: true,
-                    user: action.payload
-                }          
+        case GUEST_USER_LOADED:
+            return{
+                ...state,
+                isAuthenticated: true,
+                isGuest: true,
+                user: action.payload.user
+            }          
         case REGISTER_GUSER_FAILED:
         case REGISTER_RUSER_FAILED:
         case LOGIN_FAILED:
@@ -58,24 +58,20 @@ export const authReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token)
             return {
-                ...state,
-                ...action.payload,
+                token: action.payload.token,
+                user: action.payload.user,
                 isAuthenticated:true,
                 isLoading:false,
                 isGuest:action.payload.is_guest,
-                
             }    
         case GUEST_USER_FAILED:
         case ROOT_USER_FAILED:
         case LOGOUT_SUCCESS:
             localStorage.removeItem('token')
             return{
-                ...state,
-                token: null,
-                isGuest: null,
-                isAuthenticated: false,
-                isLoading: false,
+                ...initialState
             }
+        default:
+            return state;
     }
-    return state;
 }

@@ -56,32 +56,32 @@ class Populares extends Component{
         //var orden = listarPop(this.state.becas,'vistas','des')
         const items = orden
         return (
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" background="#01e37f">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" background="#01e37f">
+                <div className="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-inner">
+                <div className="carousel-inner">
                     <div>
                         {items.slice(0,3).map((item)=>(
                             <div key={item.id}>        
-                                <div class="carousel-item active">
-                                <section class="product">
-                                    <div class="product__info">
-                                        <div class="title">
+                                <div className="carousel-item active">
+                                <section className="product">
+                                    <div className="product__info">
+                                        <div className="title">
                                             <h1>Becas populares</h1>
-                                            <div class="descripcion">
+                                            <div className="descripcion">
                                                 <h2>{item.nombre}</h2>
                                             </div>
                                         </div>
-                                        <div class="descripcion">
+                                        <div className="descripcion">
                                             <h2>{item.universidad}</h2>
                                         </div>
-                                        <div class="descripcion">
+                                        <div className="descripcion">
                                             <h2>{item.pais}</h2>
                                         </div>
-                                        <button class="detalle--btn" onClick={() => this.detallarItem(item)}>Detalles</button>
+                                        <button className="detalle--btn" onClick={() => this.detallarItem(item)}>Detalles</button>
                                     </div>
                                 </section>
                                 </div>

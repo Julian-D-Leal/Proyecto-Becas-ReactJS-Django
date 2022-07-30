@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fjd@ah506tmbu)=_-qa4(i5#)*d01&@ymb46g!-=oujcal0@m%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
 
 
 # Application definition
@@ -45,6 +44,11 @@ INSTALLED_APPS = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://192.168.20.172:19006',
+    'http://192.168.20.172:19002',
+    'exp://192.168.20.172:19000',
+    'exp://wc-f6v.anonymous.my-project.exp.direct:80'
+    'http://192.168.20.60:19006',
 )
 
 MIDDLEWARE = [
@@ -55,7 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -126,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -145,5 +151,17 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'http://localhost:19006',
+]
+
+ALLOWED_HOSTS = [
+    'localhost',
+    'http://192.168.20.172:19006',
+    'http://192.168.20.60:19006'
+    '10.0.2.2',
+    '127.0.0.1',
+    '192.168.20.172',
+    '192.168.20.60',
+    '10.38.1.215'
 ]
 

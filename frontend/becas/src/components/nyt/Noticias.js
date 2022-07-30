@@ -31,7 +31,7 @@ class Noticias extends Component {
                     <div className="column main-column" key={item.title}>
                         <div className="article first-article">
 	                        <div className="article-image imagen">
-                                <img src={item.multimedia[0].url} className="imagen"/>
+                                <img src={item.multimedia[0].url} alt='noticia' className="imagen"/>
                             </div> 
                             <div className="article-body">
                                 <h2 className="article-title">{item.title}</h2>
@@ -43,4 +43,4 @@ class Noticias extends Component {
             </div>)
     }
 }
-export default Noticias
+export default Noticias;

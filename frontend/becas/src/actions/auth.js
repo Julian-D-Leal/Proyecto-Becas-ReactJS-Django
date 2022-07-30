@@ -12,30 +12,30 @@ import {
     REGISTER_RUSER_FAILED } from "./types"
 
 
-    export const create_guestuser=({username, email,password, password2})=>(dispatch)=>{
-        const config={
-            headers:{
-                'Content-Type':'application/json',
-            }
+export const create_guestuser=({username, email,password, password2})=>(dispatch)=>{
+    const config={
+        headers:{
+            'Content-Type':'application/json',
         }
-        const body=JSON.stringify({username, email, password, password2})
-    
-        axios.post('http://127.0.0.1:8000/becas/signup/guest', body, config)
-        .then(res =>{
-            dispatch({
-                type:REGISTER_GUSER_SUCCESS,
-                payload:res.data
-            })
-            console.log(res.data)
-        }).catch(err =>{
-            dispatch({
-                type:REGISTER_GUSER_FAILED
-            })
-            console.log(err.response.data)
-        })
-    
-        
     }
+    const body=JSON.stringify({username, email, password, password2})
+
+    axios.post('http://127.0.0.1:8000/becas/signup/guest', body, config)
+    .then(res =>{
+        dispatch({
+            type:REGISTER_GUSER_SUCCESS,
+            payload:res.data
+        })
+        console.log(res.data)
+    }).catch(err =>{
+        dispatch({
+            type:REGISTER_GUSER_FAILED
+        })
+        console.log(err.response.data)
+    })
+
+    
+}
 
 export const login = ({username, password}) =>(dispatch)=>{
     let state={
@@ -58,7 +58,6 @@ export const login = ({username, password}) =>(dispatch)=>{
     }).catch(err =>{
         dispatch({
             type: LOGIN_FAILED,
-
         })
         console.log(err.response.data)
     })
@@ -74,7 +73,7 @@ export const getRootUser = () =>(dispatch, getState) =>{
     }
 
     if(token&&!is_guest){
-        config.headers['Authorization']='Token ${token}'
+        config.headers['Authorization']=`Token ${token}`
     }
     axios.get('http://127.0.0.1:8000/becas/root/dashboard/',config)
     .then(res=>{
@@ -99,7 +98,7 @@ export const getGuestUser = () =>(dispatch, getState) =>{
     }
 
     if(token && is_guest){
-        config.headers['Authorization']='Token ${token}'
+        config.headers['Authorization']=`Token ${token}`
     }
     axios.get('http://127.0.0.1:8000/becas/guest/dashboard/',config)
     .then(res=>{
@@ -115,8 +114,8 @@ export const getGuestUser = () =>(dispatch, getState) =>{
 } 
 
 
-export const logout=()=>(dispatch, getState)=>{
-    const token=getState().auth.token
+export const logout=()=>(dispatch,  getState)=>{
+    const token = getState().auth.token
     const config={
         headers:{
             'Content-Type':'application/json'

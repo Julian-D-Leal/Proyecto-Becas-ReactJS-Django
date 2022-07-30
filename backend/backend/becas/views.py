@@ -41,7 +41,9 @@ class CustomAuthToken(ObtainAuthToken):
        return Response({
            'token':token.key,
            'user_id':user.pk,
-           'is_admin':user.is_admin
+           'is_admin':user.is_admin,
+           'is_guest':user.is_guest,
+           'user': UserSerializer(user,context=self.get_serializer_context()).data
        })
 
 class LogoutView(APIView):

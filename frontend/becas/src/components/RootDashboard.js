@@ -76,17 +76,17 @@ class RootDashboard extends Component {
         alert("save" + JSON.stringify(item));
       };
     handleSubmit = (item) => {
-    this.toggle();
-    if (item.id) {      
-        axios
-        .put(`http://localhost:8000/becas/list/${item.id}/`, item)
-        .then((res) => this.refreshList());
-        return alert("Accion realizada con exito");
+        this.toggle();
+        if (item.id) {      
+            axios
+            .put(`http://localhost:8000/becas/list/${item.id}/`, item)
+            .then((res) => this.refreshList());
+            return alert("Accion realizada con exito");
     }
     axios 
         .post("http://localhost:8000/becas/list/", item)
         .then((res) => this.refreshList());
-    alert("Accion realizada con exito");
+        alert("Accion realizada con exito");
     };
     handleDelete = (item) => {
         axios

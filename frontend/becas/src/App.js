@@ -1,29 +1,19 @@
-import './App.css';
-import React,{ Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-//import Homepage from './component/Homepage';
-import Guestsignup from './components/signupGuest';
-import Login from './components/Login'
-import Index from './components/index';
-import RootDashboard from './components/RootDashboard';
-import GuestDashboard from './components/GuestDashboard';
-import {RPrivateRoute} from './private/PrivateRoute'
-
-
+import React, { Component} from "react";
+import {Provider} from "react-redux"
+import store from "./store"
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRouter from "./routers/AppRouter";
+import Layout from "./components/layouts/Layout";
 
 class App extends Component {
   render(){
     return (
       <Router>
-        <div className="App">
-        <Switch>
-          <Route exact path="/" component={Index}/>
-          <Route exact path="/guest/register/" component={Guestsignup}/>
-          <Route exact path="/guest/login/" component={Login}/>
-          <RPrivateRoute exact path="/guest/dashboard/"  component={GuestDashboard} />
-          <RPrivateRoute exact path="/root/dashboard/"  component={RootDashboard} />
-         </Switch>
-        </div>
+        <Provider store={store}>
+          <Layout>
+            <AppRouter/>
+          </Layout>
+        </Provider>
       </Router>
     );
   }

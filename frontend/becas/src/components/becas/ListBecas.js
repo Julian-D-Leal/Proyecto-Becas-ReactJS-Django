@@ -60,28 +60,28 @@ class ListBecas extends Component{
         return this.setState({viewInternationals:1});
     }
 
-
-
     render = () => {
         const {viewInternationals} = this.state
         const items = this.state.becas.filter(
             (item) => item.categoria === viewInternationals
         )
         return (
-            <div>
-                <div> <h2>NOTICIAS NEW YORK TIMES</h2>
-                <Noticias/>
-                <Populares/>
+            <div className='container'>
+                <div className='text-center'> 
+                    <h2 className='text-center mt-4'>NOTICIAS NEW YORK TIMES</h2>
+                    <Noticias/>
+                    <Populares/>
+                    <div className='mt-4'>
+                        <button onClick={() => this.displayInternationals(false)}
+                        className="btn btn-primary">
+                            BECAS NACIONALES
+                        </button>
+                        <button onClick={() => this.displayInternationals(true)}
+                        className="btn btn-primary">
+                            BECAS INTERNACIONALES
+                        </button>
+                    </div>
                 </div>
-                <button onClick={() => this.displayInternationals(false)}
-                className="btn btn-primary">
-                    BECAS NACIONALES
-                </button>
-                <button onClick={() => this.displayInternationals(true)}
-                className="btn btn-primary">
-                    BECAS INTERNACIONALES
-                </button>
-                
                 {items.map((item)=>(
                     <div key={item.id}>
                         <div className="courses-container">
